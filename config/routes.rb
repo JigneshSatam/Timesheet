@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  # get 'tasks/create'
+
   get 'users/index' => 'users#index'
 
-
+  resources :tasks
   devise_for :users
 
   # devise_scope :user do

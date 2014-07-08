@@ -7,21 +7,31 @@
     <button class = "bt" type="button">THURS</button>
     <button class = "bt" type="button">FRI</button>
   </div>
-  <br>
-  <br>
+  <br><br>
+
   <div>
-
     <img src="http://images.sodahead.com/polls/001344557/green_plus_sign_hi_answer_2_small.png" alt="some_text" id="ad_task">
-
   </div>
 
   <div  id="myPopup">
-    <form>
-      <p align:centre > New Task</p>
-      Task: <input type="text" name="task_name"><br>
-      Time: <input type="time" name="time"><br>
-      <button type="button">Add Task</button>
-    </form>
+
+   <%= form_for @task, remote: true ,action: "create"  do |f| %>
+         New Task <br>
+        <div >
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        </div>
+
+        <div >
+        <%= f.label :time %>
+        <%= f.text_field :start_time %>
+        </div>
+
+        <div >
+        <%= f.submit 'Add' %>
+        </div>
+    <% end %>
+
   </div>
 
   <h1>TASK TABLE</h1>
@@ -30,45 +40,26 @@
     <tr>
       <th>Sr no.</th>
       <th>Task</th>
-      <th>time</th>
-      <th>start</th>
-      <th>End Time</th>
+      <th>Time</th>
+      <th>Start</th>
       <th>Total Time</th>
-
     </tr>
-    <tr>
-      <td data-th="">1.</td>
-      <td data-th="">traning</td>
-      <td data-th="">13.00</td>
-      <td data-th="">
-      <button class = "btn1">Start</button>
-      <br>
-      <button class = "btn2">
-        <img src="http://preloaders.net/preloaders/321/Clock%20with%20hands.gif" alt="some_text">
-        <br/>
-        End
-      </button>
 
-    </td>
-      <td data-th="">14.00</td>
-      <td data-th="">e_time-stime</td>
-    </tr>
-    <tr>
-      <td data-th="">1.</td>
-      <td data-th="">traning</td>
-      <td data-th="">13.00</td>
-      <td data-th="">clock img</td>
-      <td data-th="">14.00</td>
-      <td data-th="">e_time-stime</td>
-    </tr>
-      <td data-th="">1.</td>
-      <td data-th="">traning</td>
-      <td data-th="">13.00</td>
-      <td data-th="">
+    <% @tasks.each do |t| %>
+      <tr>
+        <td><%="#{t.id}"%></td>
+        <td><%="#{t.name}"%></td>
+        <td><%="#{t.start_time}"%></td>
+        <td>
+          <button class = "btn1" >Start</button><br>
+          <button class = "btn2" >
+            <img src="http://preloaders.net/preloaders/321/Clock%20with%20hands.gif" alt="some_text"><br/>
+          End</button>
+        </td>
+        <td><% t.end_time %></td>
+      </tr>
+    <% end %>
 
-      </td>
-      <td data-th="">14.00</td>
-      <td data-th="">e_time-stime</td>
   </table>
 
 
